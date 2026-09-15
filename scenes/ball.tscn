@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://0nrb7wryrwj8"]
+
+[ext_resource type="Texture2D" uid="uid://di4q1coejje5l" path="res://assets/football.png" id="1_7s4qf"]
+[ext_resource type="Script" uid="uid://bch4yns7b57m6" path="res://scenes/ball.gd" id="1_cxlvu"]
+
+[sub_resource type="Curve" id="Curve_f7cbr"]
+_data = [Vector2(0, 0.8197674), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cxlvu"]
+curve = SubResource("Curve_f7cbr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cxlvu"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_cxlvu")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6cqr3"]
+radius = 30.066593
+
+[sub_resource type="Animation" id="Animation_cxlvu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f7cbr"]
+resource_name = "squash"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.65, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4dx81"]
+_data = {
+&"RESET": SubResource("Animation_cxlvu"),
+&"squash": SubResource("Animation_f7cbr")
+}
+
+[node name="ball" type="Area2D" unique_id=535673579]
+collision_mask = 2
+script = ExtResource("1_cxlvu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1741644111]
+amount = 5
+texture = ExtResource("1_7s4qf")
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_cxlvu")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1108311694]
+texture = ExtResource("1_7s4qf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1284583951]
+shape = SubResource("CircleShape2D_6cqr3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1879461135]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1699651330]
+libraries/ = SubResource("AnimationLibrary_4dx81")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

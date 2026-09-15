@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://dsmg5l6rk85be"]
+
+[ext_resource type="PackedScene" uid="uid://bdd7iwecv5ah7" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://0nrb7wryrwj8" path="res://scenes/ball.tscn" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://cnb3xiyds13f6" path="res://scenes/mouse.tscn" id="3_4wyf3"]
+[ext_resource type="Script" uid="uid://bidfsjnybpk1n" path="res://scenes/money.gd" id="4_k0juu"]
+[ext_resource type="Shader" uid="uid://b3sw8a62xuns5" path="res://shaders/crt.gdshader" id="5_71j4m"]
+[ext_resource type="Script" uid="uid://d2okrej1uqts8" path="res://scenes/timer.gd" id="6_i7141"]
+[ext_resource type="Texture2D" uid="uid://166v3vq2wwvu" path="res://assets/Software_Hourglass_Sand_Time_Wait.png" id="6_qfnet"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
+shader = ExtResource("5_71j4m")
+shader_parameter/scanline_intensity = 0.082000003895
+shader_parameter/warp = 0.0
+
+[node name="world" type="Node2D" unique_id=389575192]
+
+[node name="bg" type="ColorRect" parent="." unique_id=1141726869]
+offset_left = -423.0
+offset_top = -245.0
+offset_right = 1553.0
+offset_bottom = 889.0
+color = Color(0.1775, 0.71, 0.34612495, 1)
+
+[node name="player" parent="." unique_id=950541305 instance=ExtResource("1_nnsk1")]
+position = Vector2(300, 46)
+
+[node name="player2" parent="." unique_id=1264281259 instance=ExtResource("1_nnsk1")]
+position = Vector2(1005, 142)
+
+[node name="player3" parent="." unique_id=533629266 instance=ExtResource("1_nnsk1")]
+position = Vector2(553, 718)
+
+[node name="player4" parent="." unique_id=1716391377 instance=ExtResource("1_nnsk1")]
+position = Vector2(887, 553)
+
+[node name="player5" parent="." unique_id=1674945405 instance=ExtResource("1_nnsk1")]
+position = Vector2(684, -32)
+
+[node name="player6" parent="." unique_id=636753952 instance=ExtResource("1_nnsk1")]
+position = Vector2(142, 335)
+
+[node name="player7" parent="." unique_id=1302259263 instance=ExtResource("1_nnsk1")]
+position = Vector2(223, 649)
+
+[node name="ball" parent="." unique_id=535673579 instance=ExtResource("2_rwgxs")]
+position = Vector2(410, 561)
+
+[node name="camera" type="Camera2D" parent="." unique_id=673147136 groups=["camera"]]
+position = Vector2(563, 320)
+zoom = Vector2(0.6, 0.6)
+
+[node name="mouse" parent="." unique_id=971596764 instance=ExtResource("3_4wyf3")]
+
+[node name="ui" type="CanvasLayer" parent="." unique_id=540608974]
+
+[node name="Control" type="Control" parent="ui" unique_id=1652932504]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="money" type="Label" parent="ui/Control" unique_id=464897807]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -58.0
+offset_right = -42.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/outline_size = 13
+theme_override_font_sizes/font_size = 72
+text = "$0"
+script = ExtResource("4_k0juu")
+
+[node name="crt" type="ColorRect" parent="ui/Control" unique_id=1401118239]
+z_index = 2
+material = SubResource("ShaderMaterial_k0juu")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="timer" type="HBoxContainer" parent="ui/Control" unique_id=550733338]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 35.0
+offset_right = 165.0
+offset_bottom = 104.0
+script = ExtResource("6_i7141")
+
+[node name="TextureRect" type="TextureRect" parent="ui/Control/timer" unique_id=1667573292]
+layout_mode = 2
+texture = ExtResource("6_qfnet")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="ui/Control/timer" unique_id=1926658031]
+layout_mode = 2
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/font_size = 80
+text = "10"
+
+[node name="Timer" type="Timer" parent="ui/Control/timer" unique_id=207593316]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="ui/Control/timer/Timer" to="ui/Control/timer" method="_on_timer_timeout"]
