@@ -2,7 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://di4q1coejje5l" path="res://assets/football.png" id="1_7s4qf"]
 [ext_resource type="Script" uid="uid://bch4yns7b57m6" path="res://scenes/ball.gd" id="1_cxlvu"]
+[ext_resource type="Resource" uid="uid://dbjv6iwofjili" path="res://resources/money.tres" id="2_4dx81"]
 [ext_resource type="Texture2D" uid="uid://1a06l07nidlg" path="res://assets/circle.png" id="3_f7cbr"]
+[ext_resource type="Resource" uid="uid://dlh87233xnkki" path="res://resources/power.tres" id="3_jj7gd"]
+[ext_resource type="Resource" uid="uid://boyxu5h75gqc3" path="res://resources/accuracy.tres" id="4_fwo8l"]
 
 [sub_resource type="Curve" id="Curve_f7cbr"]
 _data = [Vector2(0, 0.8197674), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -93,6 +96,9 @@ collision_mask = 2
 script = ExtResource("1_cxlvu")
 money_color = Color(1, 0.92941177, 0.2784314, 1)
 crit_color = Color(1, 0.4475, 0.14999998, 1)
+money_upgrade = ExtResource("2_4dx81")
+power_upgrade = ExtResource("3_jj7gd")
+accuracy_upgrade = ExtResource("4_fwo8l")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1741644111]
 amount = 5

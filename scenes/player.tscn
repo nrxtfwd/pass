@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://07elnkmib7dq" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bnx7c2ukqqn5a" path="res://assets/idle.png" id="2_g2els"]
+[ext_resource type="Resource" uid="uid://dlh87233xnkki" path="res://resources/power.tres" id="2_qhqgy"]
+[ext_resource type="Resource" uid="uid://boyxu5h75gqc3" path="res://resources/accuracy.tres" id="3_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 64.44572
@@ -68,6 +70,8 @@ animations = [{
 [node name="player" type="Area2D" unique_id=950541305 groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_g2els")
+power_upgrade = ExtResource("2_qhqgy")
+accuracy_upgrade = ExtResource("3_dqkch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1464458646]
 position = Vector2(0, 7)

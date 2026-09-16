@@ -2,6 +2,8 @@ extends Area2D
 
 @export var impulse: float = 500.0
 @export var min_speed: float = 400.0
+@export var power_upgrade : UpgradeResource
+@export var accuracy_upgrade : UpgradeResource
 
 func _ready() -> void:
 	var camera = get_tree().get_first_node_in_group('camera')
@@ -10,11 +12,9 @@ func _ready() -> void:
 
 func randomise(dir):
 	var angle := randf_range(-25.0,25.0)
-	for skill in Global.skill_tree:
-			match skill:
-				'accuracy':
-					if randf() <= 0.3:
-						angle = 1.0
+	for i in range(accuracy_upgrade.tier):
+		if randf() <= 0.3:
+			angle = 0.0
 	return dir.rotated(deg_to_rad(angle))
 
 func _on_area_entered(area: Area2D) -> void:
@@ -26,10 +26,7 @@ func _on_area_entered(area: Area2D) -> void:
 				valid_players.append(p)
 		
 		var power = impulse
-		for skill in Global.skill_tree:
-			match skill:
-				'power':
-					power += 50.0
+		power += power_upgrade.tier*power_upgrade.value1
 		if not valid_players.is_empty():
 			var nearest = valid_players.pick_random()
 			var dir = (nearest.global_position - area.global_position).normalized()

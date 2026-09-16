@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://boyxu5h75gqc3"]
+
+[ext_resource type="Script" uid="uid://dgvb3r5jp1eqf" path="res://scripts/upgrade_resource.gd" id="1_yn85a"]
+
+[resource]
+script = ExtResource("1_yn85a")
+upgrade_name = "accuracy"
+metadata/_custom_type_script = "uid://dgvb3r5jp1eqf"

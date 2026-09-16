@@ -7,15 +7,23 @@ extends Area2D
 @export var money_color : Color
 @export var crit_color : Color
 
+@export_category('upgrades')
+@export var money_upgrade : UpgradeResource
+@export var power_upgrade : UpgradeResource
+@export var accuracy_upgrade : UpgradeResource
+
 var hovering = false
+var hit_cd := 0.0
 
 func hit(player = self):
 	var amount = 1
 	var is_crit = randf() <= 0.2
+	hit_cd = 0.8
 	if is_in_group('fire'):
 		is_crit = true
 	if is_crit:
 		amount = randi_range(2,3)
+	amount += money_upgrade.tier
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play('squash')
 	Global.money += amount
@@ -43,8 +51,9 @@ func _process(delta: float) -> void:
 	$sprite.modulate = Color.GRAY if velocity.length() > threshold else Color.WHITE
 	velocity = velocity.move_toward(Vector2.ZERO, decay * delta)
 	position += velocity * delta
+	hit_cd -= delta
 	if hovering:
-		if velocity.length() <= threshold:
+		if hit_cd <= 0.0:
 			var players = get_tree().get_nodes_in_group("player")
 			if not players.is_empty():
 				var nearest = players[0]
@@ -55,7 +64,9 @@ func _process(delta: float) -> void:
 						min_dist = dist
 						nearest = p
 				var dir = (nearest.global_position - global_position).normalized()
-				velocity = dir * impulse
+				var power = impulse
+				power += power_upgrade.tier*power_upgrade.value1
+				velocity = dir * (power)
 				hit()
 				get_tree().get_first_node_in_group('mouse').bounce = 1.0
 

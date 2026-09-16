@@ -21,8 +21,34 @@ content_margin_bottom = 25.0
 bg_color = Color(0.57078665, 0.3774, 0.74, 1)
 shadow_size = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsgte"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.41025886, 0.24424309, 0.5478962, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb50s"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0.07058824, 0.07058824, 0.07058824, 0.77254903)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
 [resource]
 Button/styles/hover = SubResource("StyleBoxFlat_di7s0")
 Button/styles/normal = SubResource("StyleBoxFlat_e3hyu")
 Button/styles/pressed = SubResource("StyleBoxFlat_nixot")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_frq1j")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_jsgte")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_lb50s")
