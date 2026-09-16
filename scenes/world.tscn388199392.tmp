@@ -11,23 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://clmd7t1dweyv4" path="res://scenes/lines/fire_lines.tscn" id="8_4mrxx"]
 [ext_resource type="Theme" uid="uid://b5w8jfa1a4tkd" path="res://default.tres" id="9_w7kh3"]
 [ext_resource type="Script" uid="uid://cvbucyouldnjm" path="res://scenes/draw_mouse.gd" id="10_e3hyu"]
-[ext_resource type="PackedScene" uid="uid://hx4rrs31s36k" path="res://scenes/upgrade_button.tscn" id="10_q5onr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
 shader = ExtResource("5_71j4m")
 shader_parameter/warp_amount = 0.30000001425
 shader_parameter/aberration_amount = 0.0
 shader_parameter/scanline_intensity = 0.02700000128249999
-shader_parameter/vignette_intensity = 0.10000000475
+shader_parameter/vignette_intensity = 0.150000007125
 
 [node name="world" type="Node2D" unique_id=389575192]
 
 [node name="bg" type="ColorRect" parent="." unique_id=1141726869]
 z_index = -99
-offset_left = -1489.0
-offset_top = -403.0
-offset_right = 1673.0
-offset_bottom = 1647.0
+offset_left = -921.0
+offset_top = -731.0
+offset_right = 2241.0
+offset_bottom = 1319.0
 color = Color(0.1775, 0.71, 0.34612495, 1)
 
 [node name="player" parent="." unique_id=950541305 instance=ExtResource("1_nnsk1")]
@@ -58,8 +57,7 @@ position = Vector2(693, 561)
 position = Vector2(554, 335)
 zoom = Vector2(0.55, 0.55)
 
-[node name="mouse" parent="." unique_id=971596764 node_paths=PackedStringArray("draw_mouse") instance=ExtResource("3_4wyf3")]
-draw_mouse = NodePath("../ui/draw_mouse")
+[node name="mouse" parent="." unique_id=971596764 instance=ExtResource("3_4wyf3")]
 
 [node name="ui" type="CanvasLayer" parent="." unique_id=540608974]
 
@@ -139,30 +137,6 @@ anchor_bottom = 1.0
 offset_right = 304.0
 grow_vertical = 2
 theme = ExtResource("9_w7kh3")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ui/Control/upgrades" unique_id=814134506]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ui/Control/upgrades/ScrollContainer" unique_id=416395653]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_right = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ui/Control/upgrades/ScrollContainer/MarginContainer" unique_id=1109644425]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 15
-
-[node name="title" type="Label" parent="ui/Control/upgrades/ScrollContainer/MarginContainer/VBoxContainer" unique_id=521161618]
-layout_mode = 2
-theme_override_constants/outline_size = 13
-theme_override_font_sizes/font_size = 52
-text = "UPGRADES"
-horizontal_alignment = 1
-
-[node name="money" parent="ui/Control/upgrades/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1380553589 instance=ExtResource("10_q5onr")]
-layout_mode = 2
 
 [node name="draw_mouse" type="Node2D" parent="ui" unique_id=1723128340]
 script = ExtResource("10_e3hyu")

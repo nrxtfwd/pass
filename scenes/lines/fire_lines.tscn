@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://clmd7t1dweyv4"]
+
+[ext_resource type="Script" uid="uid://bx523cswo3mkg" path="res://scenes/lines/fire_lines.gd" id="1_23puj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cqr3"]
+size = Vector2(140, 140)
+
+[node name="lines" type="Area2D" unique_id=1883680530]
+z_index = -1
+collision_layer = 0
+script = ExtResource("1_23puj")
+color = Color(0.86258376, 0.36644265, 0.12112362, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=694899671]
+shape = SubResource("RectangleShape2D_6cqr3")

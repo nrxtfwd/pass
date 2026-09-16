@@ -29,10 +29,16 @@ window/stretch/aspect="expand"
 player=""
 camera=""
 mouse=""
+fire=""
 
 [gui]
 
 theme/custom_font="uid://8ve78bu1qjmr"
+
+[layer_names]
+
+2d_physics/layer_1="ball"
+2d_physics/layer_2="mouse"
 
 [physics]
 

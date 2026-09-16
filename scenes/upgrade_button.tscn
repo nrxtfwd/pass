@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://hx4rrs31s36k"]
+
+[ext_resource type="Theme" uid="uid://b5w8jfa1a4tkd" path="res://default.tres" id="1_mdhk6"]
+[ext_resource type="Script" uid="uid://dy7g5vhkfs8hl" path="res://scenes/upgrade_button.gd" id="2_0e4al"]
+[ext_resource type="Texture2D" uid="uid://di4q1coejje5l" path="res://assets/football.png" id="2_isks0"]
+
+[node name="upgrade_button" type="Button" unique_id=1380553589]
+custom_minimum_size = Vector2(0, 85)
+theme = ExtResource("1_mdhk6")
+script = ExtResource("2_0e4al")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=768126844]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=1508771328]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control" unique_id=1964212314]
+layout_mode = 0
+offset_right = 65.0
+offset_bottom = 65.0
+size_flags_horizontal = 2
+texture = ExtResource("2_isks0")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/Control" unique_id=1749983058]
+custom_minimum_size = Vector2(164, 65)
+layout_mode = 0
+offset_left = 75.0
+offset_right = 239.0
+offset_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_constants/outline_size = 13
+theme_override_font_sizes/font_size = 40
+text = "money I
+$100"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

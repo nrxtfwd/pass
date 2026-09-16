@@ -4,12 +4,26 @@ extends Area2D
 @export var decay: float = 200.0
 @export var threshold: float = 300.0
 @export var impulse: float = 500.0
+@export var money_color : Color
+@export var crit_color : Color
 
 var hovering = false
 
-func hit():
+func hit(player = self):
+	var amount = 1
+	var is_crit = randf() <= 0.2
+	if is_in_group('fire'):
+		is_crit = true
+	if is_crit:
+		amount = randi_range(2,3)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play('squash')
+	Global.money += amount
+	var popup = Global.popup(player.global_position,'$%s' % amount)
+	popup.modulate = money_color if !is_crit else crit_color
+	if player != self:
+		for group in get_groups():
+			remove_from_group(group)
 
 func _ready() -> void:
 	area_entered.connect(
@@ -22,6 +36,7 @@ func _ready() -> void:
 	)
 
 func _process(delta: float) -> void:
+	$fire.emitting = is_in_group('fire')
 	if velocity.length() > threshold:
 		$sprite.rotation += deg_to_rad(3.0)
 	$GPUParticles2D.emitting = velocity.length() > threshold
@@ -41,8 +56,6 @@ func _process(delta: float) -> void:
 						nearest = p
 				var dir = (nearest.global_position - global_position).normalized()
 				velocity = dir * impulse
-				Global.money += 1
-				Global.popup(global_position,'1')
 				hit()
 				get_tree().get_first_node_in_group('mouse').bounce = 1.0
 

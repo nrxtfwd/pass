@@ -18,7 +18,6 @@ func randomise(dir):
 	return dir.rotated(deg_to_rad(angle))
 
 func _on_area_entered(area: Area2D) -> void:
-	area.hit()
 	if "velocity" in area:
 		var players = get_tree().get_nodes_in_group("player")
 		var valid_players = []
@@ -41,8 +40,7 @@ func _on_area_entered(area: Area2D) -> void:
 			var dir = (mouse_pos - area.global_position).normalized()
 			dir = randomise(dir)
 			area.velocity = dir * power
-		Global.money += 1
-		Global.popup(global_position,'1')
+		area.hit(self)
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play('squash')
 		
