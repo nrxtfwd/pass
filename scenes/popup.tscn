@@ -55,7 +55,7 @@ _data = {
 
 [node name="popup" type="Node2D" unique_id=492625035]
 z_index = 1
-scale = Vector2(3, 3)
+scale = Vector2(1.7, 1.7)
 script = ExtResource("1_4ebxx")
 
 [node name="Label" type="Label" parent="." unique_id=1086400085]

@@ -3,7 +3,7 @@ extends Node
 const POPUP = preload("uid://bklkqhs1ruqje")
 
 var skill_tree = []
-var money := 99 :
+var money := 99999 :
 	set(value):
 		money = value
 		money_changed.emit()
