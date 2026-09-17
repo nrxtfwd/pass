@@ -27,9 +27,9 @@ func hit(player = self):
 	amount += money_upgrade.tier
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play('squash')
-	Global.money += amount
 	var popup = Global.popup(player.global_position,'$%s' % amount)
 	popup.modulate = money_color if !is_crit else crit_color
+	popup.amount = amount
 	if player != self:
 		for group in get_groups():
 			remove_from_group(group)

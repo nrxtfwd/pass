@@ -13,6 +13,43 @@
 [ext_resource type="Script" uid="uid://cvbucyouldnjm" path="res://scenes/draw_mouse.gd" id="10_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://bgjlxdscq2oqd" path="res://scenes/wall.tscn" id="12_q5onr"]
 
+[sub_resource type="Animation" id="Animation_jhx03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q5onr"]
+resource_name = "size"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhx03"]
+_data = {
+&"RESET": SubResource("Animation_jhx03"),
+&"size": SubResource("Animation_q5onr")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
 shader = ExtResource("5_71j4m")
 shader_parameter/warp_amount = 0.30000001425
@@ -40,6 +77,10 @@ position = Vector2(693, 561)
 position = Vector2(554, 335)
 zoom = Vector2(0.55, 0.55)
 
+[node name="popup_target" type="Node2D" parent="camera" unique_id=1345008021]
+unique_name_in_owner = true
+position = Vector2(922, 512)
+
 [node name="mouse" parent="." unique_id=971596764 node_paths=PackedStringArray("draw_mouse") instance=ExtResource("3_4wyf3")]
 draw_mouse = NodePath("../ui/draw_mouse")
 
@@ -62,16 +103,20 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -82.0
-offset_top = -58.0
+offset_left = -96.0
+offset_top = -92.0
 offset_right = -42.0
 offset_bottom = -35.0
 grow_horizontal = 0
 grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_constants/outline_size = 13
 theme_override_font_sizes/font_size = 72
 text = "$0"
 script = ExtResource("4_k0juu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/Control/money" unique_id=857161302]
+libraries/ = SubResource("AnimationLibrary_jhx03")
 
 [node name="crt" type="ColorRect" parent="ui/Control" unique_id=1401118239]
 visible = false

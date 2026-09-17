@@ -14,6 +14,7 @@ func popup(pos, text):
 	var cl = POPUP.instantiate()
 	cl.global_position = pos
 	cl.get_node("Label").text = text
+	cl.target_pos = scene().get_node('%popup_target').global_position
 	scene().add_child(cl)
 	
 	return cl
