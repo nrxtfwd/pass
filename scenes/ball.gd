@@ -16,6 +16,7 @@ var hovering = false
 var hit_cd := 0.0
 
 func hit(player = self):
+	Global.play('kick')
 	var amount = 1
 	var is_crit = randf() <= 0.2
 	hit_cd = 0.8
